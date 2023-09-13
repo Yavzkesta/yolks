@@ -1,7 +1,7 @@
 # ---------------------------------------
 # Generic Wine image based on Wine staging 
 # ---------------------------------------
-FROM            ubuntu:focal
+FROM            ghcr.io/parkervcp/yolks:debian
 ## install required packages
 RUN             dpkg --add-architecture i386 \
                 && apt update -y \
