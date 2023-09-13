@@ -1,4 +1,4 @@
-FROM        ghcr.io/Yavzkesta/yolks:debian
+FROM        ghcr.io/yavzkesta/yolks:debian
 
 LABEL       author="Torsten Widmann" maintainer="support@goover.de"
 

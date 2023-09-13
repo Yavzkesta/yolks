@@ -37,4 +37,4 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            ghcr.io/Yavzkesta/steamcmd:${{ matrix.distro }}
+            ghcr.io/yavzkesta/steamcmd:${{ matrix.distro }}

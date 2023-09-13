@@ -41,7 +41,7 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: |
-            ghcr.io/Yavzkesta/games:${{ matrix.game }}
+            ghcr.io/yavzkesta/games:${{ matrix.game }}
   pushAll:
     name: "games_All:${{ matrix.game }}"
     runs-on: ubuntu-latest
@@ -71,4 +71,4 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ghcr.io/Yavzkesta/games:${{ matrix.game }}
+            ghcr.io/yavzkesta/games:${{ matrix.game }}

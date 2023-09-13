@@ -36,4 +36,4 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ghcr.io/Yavzkesta/yolks:bun_${{ matrix.tag }}
+            ghcr.io/yavzkesta/yolks:bun_${{ matrix.tag }}
