@@ -1,12 +1,13 @@
-# ---------------------------------------
-# Generic Wine image based on Wine staging 
-# ---------------------------------------
 FROM            ghcr.io/parkervcp/yolks:debian
+
+LABEL           author="Michael Parker" maintainer="parker@pterodactyl.io"
+LABEL           org.opencontainers.image.licenses=MIT
+
 ## install required packages
 RUN             dpkg --add-architecture i386 \
                 && apt update -y \
-                && apt install -y --no-install-recommends gnupg2 numactl tzdata software-properties-common libntlm0 winbind xvfb xauth python3 libncurses5:i386 libncurses6:i386 libsdl2-2.0-0 libsdl2-2.0-0:i386 \
-				echo en_US.UTF-8 UTF-8 >> /etc/locale.gen && locale-gen && 
+                && apt install -y --no-install-recommends gnupg2 numactl tzdata software-properties-common libntlm0 winbind xvfb xauth python3 libncurses5:i386 libncurses6:i386 libsdl2-2.0-0 libsdl2-2.0-0:i386
+
 # Install wine and with recommends
 RUN             mkdir -pm755 /etc/apt/keyrings
 RUN             wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
@@ -21,7 +22,7 @@ RUN	            wget -q -O /usr/sbin/winetricks https://raw.githubusercontent.co
 ENV             HOME=/home/container
 ENV             WINEPREFIX=/home/container/.wine
 ENV             WINEDLLOVERRIDES="mscoree,mshtml="
-ENV             DISPLAY=:1
+ENV             DISPLAY=:0
 ENV             DISPLAY_WIDTH=1024
 ENV             DISPLAY_HEIGHT=768
 ENV             DISPLAY_DEPTH=16
