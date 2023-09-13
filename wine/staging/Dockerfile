@@ -11,7 +11,7 @@ RUN             mkdir -pm755 /etc/apt/keyrings
 RUN             wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
 RUN             wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/jammy/winehq-jammy.sources
 RUN             apt update
-RUN             apt install -y --install-recommends winehq-staging 
+RUN             apt install -y --install-recommends wine-staging=8.15~jammy-1 wine-staging-i386=8.15~jammy-1 wine-staging-amd64=8.15~jammy-1 winetricks
 
 # Set up Winetricks
 RUN	            wget -q -O /usr/sbin/winetricks https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks \
