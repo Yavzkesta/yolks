@@ -28,6 +28,6 @@ ENV             DISPLAY_HEIGHT=768
 ENV             DISPLAY_DEPTH=16
 ENV             AUTO_UPDATE=1
 ENV             XVFB=1
-RUN 			mkdir /tmp/.X11-unix && chmod 1777 /tmp/.X11-unix
+RUN 			mkdir /home/container/tmp/.X11-unix && chmod 1777 /home/container/tmp/.X11-unix
 COPY            ./../entrypoint.sh /entrypoint.sh
 CMD             [ "/bin/bash", "/entrypoint.sh" ]
