@@ -26,9 +26,9 @@ ENV             HOME=/home/container
 ENV             WINEPREFIX=/home/container/.wine
 ENV             WINEDLLOVERRIDES="mscoree,mshtml="
 ENV             DISPLAY=:0
-ENV             DISPLAY_WIDTH=1024
-ENV             DISPLAY_HEIGHT=768
-ENV             DISPLAY_DEPTH=16
+ENV             DISPLAY_WIDTH=800
+ENV             DISPLAY_HEIGHT=600
+ENV             DISPLAY_DEPTH=24
 ENV             AUTO_UPDATE=1
 ENV             XVFB=1
 

@@ -39,9 +39,10 @@ else
 fi
 
 if [[ $XVFB == 1 ]]; then
-        Xvfb :0 -screen 0 ${DISPLAY_WIDTH}x${DISPLAY_HEIGHT}x${DISPLAY_DEPTH} &
+        Xvfb :1 -screen 0 ${DISPLAY_WIDTH}x${DISPLAY_HEIGHT}x${DISPLAY_DEPTH} &
 fi
-
+export WINEDLLOVERRIDES="mscoree,mshtml="
+export DISPLAY=:1
 # Install necessary to run packages
 echo "First launch will throw some errors. Ignore them"
 
