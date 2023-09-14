@@ -16,8 +16,6 @@ RUN             apt-get install -y wine-staging=5.8~focal wine-staging-i386=5.8~
 ## install required packages
 
 # Set up Winetricks
-RUN	            wget -q -O /usr/sbin/winetricks https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks \
-                && chmod +x /usr/sbin/winetricks
 RUN             mkdir /tmp/.X11-unix && chmod 1777 /tmp/.X11-unix
 
 ENV             HOME=/home/container

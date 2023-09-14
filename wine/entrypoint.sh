@@ -21,7 +21,7 @@ else
     echo -e "user set to ${STEAM_USER}"
 fi
 
-
+rm -f /tmp/.X1-lock
 Xvfb :1 -screen 0 800x600x24 &
 export WINEDLLOVERRIDES="mscoree,mshtml="
 export DISPLAY=:1
@@ -31,12 +31,12 @@ echo "First launch will throw some errors. Ignore them"
 mkdir -p $WINEPREFIX
 cd empyrion
 mkdir Logs
-rm -f /tmp/.X1-lock
-[ "$1" = "bash" ] && exec "$@"
+
+
 
 MODIFIED_STARTUP=$(echo ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')
 echo ":/home/container$ ${MODIFIED_STARTUP}"
-
+[ "$1" = "bash" ] && exec "$@"
 sh -c 'until [ "`netstat -ntl | tail -n+3`" ]; do sleep 1; done
 sleep 5 # gotta wait for it to open a logfile
 tail -F Logs/current.log ../Logs/*/*.log 2>/dev/null' &
