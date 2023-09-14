@@ -31,7 +31,8 @@ export DISPLAY=:1
 echo "First launch will throw some errors. Ignore them"
 
 mkdir -p $WINEPREFIX
-cd cd empyrion
+cd empyrion
+mkdir Logs
 [ "$1" = "bash" ] && exec "$@"
 
 sh -c 'until [ "`netstat -ntl | tail -n+3`" ]; do sleep 1; done
