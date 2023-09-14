@@ -39,7 +39,7 @@ else
 fi
 
 if [[ $XVFB == 1 ]]; then
-        Xvfb :0 -screen 0 ${DISPLAY_WIDTH}x${DISPLAY_HEIGHT}x${DISPLAY_DEPTH} &
+		Xvfb :1 -screen 0 800x600x24 &
 fi
 
 # Install necessary to run packages
