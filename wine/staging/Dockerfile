@@ -11,6 +11,7 @@ RUN             apt-get install -y net-tools tar unzip curl xz-utils gnupg2 soft
 RUN             mkdir -pm755 /etc/apt/keyrings
 RUN             wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
 RUN             wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/focal/winehq-focal.sources
+RUN             apt-get update
 RUN             apt-get install -y winehq-staging=5.8~focal winehq-staging-i386=5.8~focal winehq-staging-amd64=5.8~focal winetricks
 ## install required packages
 
