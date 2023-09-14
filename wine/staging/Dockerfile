@@ -1,36 +1,26 @@
 # ---------------------------------------
 # Generic Wine image based on Wine staging 
 # ---------------------------------------
-FROM            ghcr.io/parkervcp/yolks:debian
+FROM            ubuntu:focal
 
 LABEL           author="Michael Parker" maintainer="parker@pterodactyl.io"
 LABEL           org.opencontainers.image.licenses=MIT
-
+RUN dpkg --add-architecture i386 && \
+    apt-get update && \
+    apt-get install -y net-tools tar unzip curl xz-utils gnupg2 software-properties-common xvfb libc6:i386 locales && \
+    mkdir -pm755 /etc/apt/keyrings && \
+    wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key && \
+    wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/focal/winehq-focal.sources && \
+    apt-get install -y wine-staging=5.7~focal wine-staging-i386=5.7~focal wine-staging-amd64=5.7~focal winetricks
 ## install required packages
-RUN             dpkg --add-architecture i386 \
-                && apt update -y \
-                && apt install -y --no-install-recommends gnupg2 numactl tzdata software-properties-common libntlm0 winbind xvfb xauth python3 libncurses5:i386 libncurses6:i386 libsdl2-2.0-0 libsdl2-2.0-0:i386
-
-# Install wine and with recommends
-RUN             mkdir -pm755 /etc/apt/keyrings
-RUN             wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
-RUN             wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/debian/dists/bullseye/winehq-bullseye.sources
-RUN             apt update
-RUN             apt install --install-recommends winehq-staging cabextract wine-binfmt -y
 
 # Set up Winetricks
 RUN	            wget -q -O /usr/sbin/winetricks https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks \
                 && chmod +x /usr/sbin/winetricks
+RUN             mkdir /tmp/.X11-unix && chmod 1777 /tmp/.X11-unix
 
 ENV             HOME=/home/container
 ENV             WINEPREFIX=/home/container/.wine
-ENV             WINEDLLOVERRIDES="mscoree,mshtml="
-ENV             DISPLAY=:0
-ENV             DISPLAY_WIDTH=800
-ENV             DISPLAY_HEIGHT=600
-ENV             DISPLAY_DEPTH=24
-ENV             AUTO_UPDATE=1
-ENV             XVFB=1
 
 COPY            ./../entrypoint.sh /entrypoint.sh
 CMD             [ "/bin/bash", "/entrypoint.sh" ]
