@@ -33,7 +33,7 @@ cd empyrion
 mkdir Logs
 
 
-winetricks -q vcrun2019
+winetricks -q vcrun2019 dotnet48
 MODIFIED_STARTUP=$(echo ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')
 echo ":/home/container$ ${MODIFIED_STARTUP}"
 [ "$1" = "bash" ] && exec "$@"
