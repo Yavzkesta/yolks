@@ -60,6 +60,12 @@ for trick in $WINETRICKS_RUN; do
         echo "Installing $trick"
         winetricks -q $trick
 done
+rm -f /tmp/.X1-lock
+Xvfb :1 -screen 0 800x600x24 &
+export WINEDLLOVERRIDES="mscoree,mshtml="
+export DISPLAY=:1
+# Install necessary to run packages
+echo "First launch will throw some errors. Ignore them"
 mkdir -p $WINEPREFIX
 cd empyrion
 mkdir Logs
